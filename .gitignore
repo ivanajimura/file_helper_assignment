@@ -13,3 +13,4 @@ test/__pycache__/test_remove_file.cpython-311-pytest-8.2.0.pyc
 test/__pycache__/test_save_data.cpython-311-pytest-8.2.0.pyc
 test/__pycache__/test_start_config_files.cpython-311-pytest-8.2.0.pyc
 venv/
+report.xml

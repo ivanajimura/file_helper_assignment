@@ -27,8 +27,10 @@ You can run all tests in a single file with the following command in the termina
 >make run-test-file path=path/to/file/filename.py
 
 You can run a single test from a file with the following command in the terminal:
->make run-test-file path=path/to/file/filename.py method=test_name      #do not use () in the method
+>make run-test-file path=path/to/file/filename.py method=test_name      # do not use () in the method
 
+You can generate a report in xml format for all the tests:
+>make save-test-report filename=filename        # do not use the extension
 
 # Writing Tests
 You need to import the file with the functions:
