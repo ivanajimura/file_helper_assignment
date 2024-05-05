@@ -57,5 +57,6 @@ def test_create_dir_reserved_characters(mocked_logger_info, mocked_logger_warnin
     if not Path(path_name).exists():
         assert True    
     else:
+        rmtree(path_name)
         assert False
-    rmtree(path_name)
+    
