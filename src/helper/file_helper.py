@@ -4,7 +4,7 @@ import sys                          # used to find folder of the CDG executable 
 from shutil import rmtree           # rmtree is used to remove folders
 
 # Import commented as it will not be tested
-#from core.logger import Logger      # used for logging throughout the program
+from core.logger import Logger      # used for logging throughout the program
 
 
 
