@@ -3,8 +3,8 @@ import os                           # used to access files in subfolders using o
 import sys                          # used to find folder of the CDG executable with sys.executable
 from shutil import rmtree           # rmtree is used to remove folders
 
-# Import commented as it will not be tested
 from src.core.logger import Logger      # used for logging throughout the program
+
 
 
 
