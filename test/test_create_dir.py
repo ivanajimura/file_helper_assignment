@@ -1,24 +1,10 @@
-from shutil import rmtree
 import pytest
 
+from shutil import rmtree
 from pathlib import Path
+
 from src.helper.file_helper import FileHelper
-from unittest.mock import patch, MagicMock
-
-@pytest.fixture
-def mocked_logger_warning():
-    with patch('src.core.logger.Logger.warning') as mocked_warning:
-        yield mocked_warning
-
-@pytest.fixture
-def mocked_logger_info():
-    with patch('src.core.logger.Logger.info') as mocked_info:
-        yield mocked_info
-
-@pytest.fixture
-def mocked_logger_error():
-    with patch('src.core.logger.Logger.error') as mocked_error:
-        yield mocked_error
+from test.fixtures import mocked_logger_error, mocked_logger_info, mocked_logger_warning
 
 def test_create_dir_happy_path(mocked_logger_info) -> None:
     path_name = "a_happy_path"
