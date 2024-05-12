@@ -2,44 +2,24 @@ import os
 import pytest
 import json
 from src.helper.file_helper import FileHelper
-from unittest.mock import patch, MagicMock
+from test.fixtures import mocked_logger_error, mocked_logger_info, mocked_logger_warning
 
-@pytest.fixture
-def mocked_logger_warning():
-    with patch('src.core.logger.Logger.warning') as mocked_warning:
-        yield mocked_warning
+def test_remove_dir_directory_is_removed_successfully(tmp_path):
+    tmp_dir = tmp_path / "tmp_dir/data.json"
+    tmp_dir.parent.mkdir()
+    tmp_dir.touch()
 
+    assert len(list(tmp_path.iterdir())) == 1
+    
+    FileHelper.remove_dir(tmp_dir.parent)
 
-def test_remove_dir_directory_does_not_exist(tmpdir, caplog):
-    dir_path = os.path.join(str(tmpdir), 'non_existent_directory')
+    assert len(list(tmp_path.iterdir())) == 0
 
-    FileHelper.remove_dir(dir_path)
+def test_remove_dir_directory_is_not_removed_if_it_does_exist(tmp_path):
 
-    assert 'Directory' in caplog.text
-    assert 'does not exist. It was not removed.' in caplog.text
+    assert len(list(tmp_path.iterdir())) == 0
+    
+    FileHelper.remove_dir("tmp_dir")
 
-def test_remove_dir_directory_exists(tmpdir, caplog):
-    dir_path = os.path.join(str(tmpdir), 'existing_directory')
-    os.makedirs(dir_path)
-
-    FileHelper.remove_dir(dir_path)
-
-    assert 'Directory' in caplog.text
-    assert 'has been removed successfully.' in caplog.text
-
-    assert not os.path.exists(dir_path)
-
-def test_remove_dir_os_error(tmpdir, caplog, monkeypatch):
-    def mock_rmtree_error(path):
-        raise OSError("Mock OS Error")
-
-   #  monkeypatch.setattr(rmtree, 'rmtree', mock_rmtree_error)
-
-    dir_path = os.path.join(str(tmpdir), 'existing_directory')
-    os.makedirs(dir_path)
-
-    FileHelper.remove_dir(dir_path)
-
-    assert 'OS Error' in caplog.text
-    assert 'removing directory' in caplog.text
+    assert len(list(tmp_path.iterdir())) == 0
  

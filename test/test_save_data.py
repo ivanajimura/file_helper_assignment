@@ -2,33 +2,28 @@ import os
 import pytest
 import json
 from src.helper.file_helper import FileHelper
-from unittest.mock import patch, MagicMock
+from test.fixtures import mocked_logger_error, mocked_logger_info, mocked_logger_warning
 
-@pytest.fixture
-def mocked_logger_warning():
-    with patch('src.core.logger.Logger.warning') as mocked_warning:
-        yield mocked_warning
-
-
-def test_save_data_success(tmpdir):
+def test_save_data_success():
     test_data = {"key": "value"}
-    os.chdir(str(tmpdir))
-
+    file_path = os.path.abspath('data')
+    
     FileHelper.save_data(test_data)
-    file_path = os.path.join(os.getcwd(), 'data.json')
 
     with open(file_path, 'r') as file:
         saved_data = json.load(file)
-        
-    assert saved_data == test_data
-    
-def test_save_data_returns_error_when_invalid_data(test_dir):
-    test_dir = tmpdir.mkdir('new_directory')
-    file_path = os.path.join(str(test_dir), 'data.json')
+        print("Saved data:", saved_data)
+        assert saved_data == test_data
 
+    os.rmtree(file_path)
+    
+def test_save_data_returns_error_when_invalid_data(tmp_path):
+    file_path = os.path.abspath('data')
     bad_data = "asd"
     FileHelper.save_data(bad_data)
 
     with pytest.raises(json.JSONDecodeError):
         with open(file_path, 'r') as file:
             saved_data = json.load(file)
+            
+    os.rmtree(file_path)

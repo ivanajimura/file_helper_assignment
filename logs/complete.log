@@ -1,0 +1,2 @@
+2024-05-12 17:40:05.340083: info - Directory [/private/var/folders/j5/_9bn2t6938s929_csdb2q9jw0000gp/T/pytest-of-shik0/pytest-67/test_remove_dir_directory_is_r0/tmp_dir] has been removed successfully.
+2024-05-12 17:40:05.343675: warning - Directory [tmp_dir] does not exist. It was not removed.
