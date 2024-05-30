@@ -16,3 +16,5 @@ venv/
 report.xml
 mock/
 mock_new/
+test/__pycache__/
+src/__pycache__/
