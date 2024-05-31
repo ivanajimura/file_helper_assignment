@@ -9,7 +9,6 @@ It is recommended to create a virtual environment first:
 >python -m venv venv
 >source venv/bin/activate
 
-
 Next, Python path must be set:
 >export PYTHONPATH='/path/to/main/folder/'
 
@@ -43,6 +42,3 @@ Test results are verified in the *assert* method. __True__ means pass, __False__
 
 A single test may have multiple asserts. All asserts must pass for a test to pass.
 
-The _mock_ folder contains several files to be used for testing purposes. Most are self-explanatory, but the following may benefit from additional explanation:
-- broken_file.txt - corrupt. Created with https://pinetools.com/corrupt-file-generator
-- COM1.txt and NUL.txt - COM1 and NUL are reserved filenames
